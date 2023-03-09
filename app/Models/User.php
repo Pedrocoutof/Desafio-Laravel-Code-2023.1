@@ -21,6 +21,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'birth_date',
+        'address', 
+        'telephone',
+        'phone_number',
+        'enter_hour',
+        'leave_hour',
     ];
 
     /**
@@ -41,4 +47,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function fieldsWithValue() {
+        return [
+            'Nome' => $this->name,
+            'E-mail' => $this->email,
+            'Data de nascimento' => $this->birth_date,
+            'Endereço' => $this->address,
+            'Telefone' => $this->phone_number,
+            'Horário de Entradas' => explode(' ', $this->enter_hour)[1],
+            'Horário de Saída' => explode(' ', $this->leave_hour)[1],
+        ];
+    }
 }
